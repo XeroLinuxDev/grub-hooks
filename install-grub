@@ -76,26 +76,13 @@ efi_boot_file=""
 fallback_is_same=false
 failed_update=false
 _grub_install=""
+debug=false
+interactive=false
 conf_file=/etc/install-grub.conf
-
-[[ -e "$conf_file" ]] && while IFS= read -r line; do
-  line=${line%%#*}
-  case $line in
-    *=*)
-      var=${line%%=*}
-      case $var in
-        *[!A-Z_a-z]*)
-          echo "Warning: invalid variable name $var ignored" >&2
-          continue;;
-      esac
-      if eval '[ -n "${'$var'+1}" ]'; then
-        echo "Warning: variable $var already set, redefinition ignored" >&2
-        continue
-      fi
-      line=${line#*=}
-      eval $var='"$line"'
-  esac
-done <"$conf_file"
+if test -f $conf_file ; then
+  . $conf_file
+fi
+[[ -e "/var/lib/pacman/db.lck" ]] && interactive=false
 
 if [[ -e "/boot/grub/i386-efi/core.efi" ]]; then
     $debug && echo "[D] GRUB 2 EFI-x32 found"
@@ -203,7 +190,7 @@ fi
 
 if [[ "$grub_type" == "EFI" ]] && [[ "${current_boot_entry,,}" != "${bootloader_id,,}" ]] \
     && [[ "$failed_update" == "false" ]]; then
-    echo "Warning: GRUB bootloader at $efi_directory/EFI/$bootloader_id was updated,
+    echo "Warning: GRUB bootloader at $(dirname $efi_source_file) was updated,
 but it seems like you are not using it by default.
 Please check your EFI boot priorities!"
 fi
