@@ -4,6 +4,6 @@ Operation = Upgrade
 Target = grub
 
 [Action]
-Description = Installing Grub to MBR/EFI
+Description = Updating Grub Installation
 When = PostTransaction
-Exec = /usr/bin/install-grub
+Exec = /usr/bin/grub-install --target=x86_64-efi --efi-directory=/boot/efi --force --recheck
