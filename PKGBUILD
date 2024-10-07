@@ -2,11 +2,11 @@
 
 pkgname=grub-hooks
 pkgdesc="Fixes, additions and enhancements to grub and os-prober."
-pkgver=1.0.1
+pkgver=3.0
 pkgrel=1
 arch=('any')
 license=('GPL')
-depends=(coreutils efibootmgr gawk grep grub lsb-release xero-hooks)
+depends=(coreutils efibootmgr gawk grep grub lsb-release)
 optdepends=(os-prober)
 backup=('etc/install-grub.conf')
 replaces=("grub-tools")
