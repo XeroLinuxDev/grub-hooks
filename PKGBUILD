@@ -1,4 +1,4 @@
-# Maintainer: DarkXero <info@techxero.com>
+ # Maintainer: DarkXero <info@techxero.com>
 
 pkgname=grub-hooks
 pkgdesc="Fixes, additions and enhancements to grub and os-prober."
@@ -18,6 +18,9 @@ source=(
   $_url/grub-install.hook
   $_url/grub-kernel.hook
   $_url/grub-update.hook
+  $_url/reboot-checker.hook
+  $_url/reboot-check
+  $_url/reboot-notify
 )
 
 package() {
