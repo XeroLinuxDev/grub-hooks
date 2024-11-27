@@ -2,8 +2,8 @@
 
 pkgname=grub-hooks
 pkgdesc="Fixes, additions and enhancements to grub and os-prober."
-pkgver=3.5
-pkgrel=2
+pkgver=3.6
+pkgrel=1
 arch=('any')
 license=('GPL')
 depends=(coreutils efibootmgr gawk grep grub lsb-release)
@@ -28,5 +28,9 @@ package() {
   install -Dm644 grub-install.hook     $pkgdir/usr/share/libalpm/hooks/grub-install.hook
   install -Dm644 grub-kernel.hook      $pkgdir/usr/share/libalpm/hooks/grub-kernel.hook
   install -Dm644 grub-update.hook      $pkgdir/usr/share/libalpm/hooks/grub-update.hook
+  install -Dm644 reboot-checker.hook    $pkgdir/usr/share/libalpm/hooks/reboot-checker.hook
+  echo "Install reboot-scripts"
+  install -Dm755 reboot-check     $pkgdir/usr/local/bin/reboot-check
+  install -Dm755 reboot-notify    $pkgdir/usr/local/bin/reboot-notify
 
 }
