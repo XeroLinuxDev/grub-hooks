@@ -3,7 +3,7 @@
 pkgname=grub-hooks
 pkgdesc="Fixes, additions and enhancements to grub and os-prober."
 pkgver=3.6
-pkgrel=1
+pkgrel=2
 arch=('any')
 license=('GPL')
 depends=(coreutils efibootmgr gawk grep grub lsb-release)

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# To be called from cachyos-reboot-required.hook.
+# To be called from reboot-checker.hook.
 # Implementation using busctl.
 
 header="XeroLinux Update"
-title="Reboot Recommended!"
-msg="Reboot is recommended due to core system update."
+title="Reboot Required!"
+msg="Core system files have been updated, please reboot to apply changes."
 
 # at TTY
 echo "==> INFO: $msg" >&2
