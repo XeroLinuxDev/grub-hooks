@@ -3,6 +3,7 @@ Operation = Install
 Operation = Upgrade
 Operation = Remove
 Type = Package
+Target = grub
 Target = amd-ucode
 Target = grub-btrfs
 Target = intel-ucode
