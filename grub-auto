@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ -d /sys/firmware/efi ]; then
+    # EFI system
+    /usr/bin/grub-install --target=x86_64-efi --efi-directory=/boot/efi --force --recheck
+else
+    # BIOS/MBR system - detect the disk
+    DISK=$(lsblk -no PKNAME $(findmnt -n -o SOURCE /))
+    if [ -n "$DISK" ]; then
+        /usr/bin/grub-install --target=i386-pc /dev/$DISK --force --recheck
+    else
+        echo "Error: Could not detect boot disk"
+        exit 1
+    fi
+fi

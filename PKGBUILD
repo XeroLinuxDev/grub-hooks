@@ -2,8 +2,8 @@
 
 pkgname=grub-hooks
 pkgdesc="Fixes, additions and enhancements to grub and os-prober."
-pkgver=3.6
-pkgrel=3
+pkgver=3.7
+pkgrel=1
 arch=('any')
 license=('GPL')
 depends=(coreutils efibootmgr gawk grep grub lsb-release)
@@ -21,6 +21,7 @@ source=(
   $_url/reboot-checker.hook
   $_url/reboot-check
   $_url/reboot-notify
+  $_url/grub-auto
 )
 
 package() {
@@ -35,5 +36,6 @@ package() {
   echo "Install reboot-scripts"
   install -Dm755 reboot-check     $pkgdir/usr/local/bin/reboot-check
   install -Dm755 reboot-notify    $pkgdir/usr/local/bin/reboot-notify
+  install -Dm755 grub-auto        $pkgdir/usr/local/bin/grub-auto
 
 }
