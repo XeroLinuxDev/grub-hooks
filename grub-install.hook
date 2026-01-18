@@ -6,4 +6,4 @@ Target = grub
 [Action]
 Description = Updating Grub Installation
 When = PostTransaction
-Exec = /usr/local/bin/grub-install-auto
+Exec = /usr/local/bin/grub-auto
