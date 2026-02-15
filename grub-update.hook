@@ -7,9 +7,8 @@ Target = grub
 Target = amd-ucode
 Target = grub-btrfs
 Target = intel-ucode
-Target = nvidia-dkms
 Target = nvidia-open-dkms
-Target = nvidia-470xx-dkms
+Target = nvidia-580xx-dkms
 
 [Action]
 Description = Updating Grub config...

@@ -2,7 +2,7 @@
 
 pkgname=grub-hooks
 pkgdesc="Fixes, additions and enhancements to grub and os-prober."
-pkgver=3.7
+pkgver=3.8
 pkgrel=1
 arch=('any')
 license=('GPL')
