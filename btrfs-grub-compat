@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# btrfs-grub-compat
+# Recompress BTRFS boot files from zstd to zlib so GRUB can read them.
+# GRUB's BTRFS zstd implementation is incomplete for large files; zlib is
+# fully supported. Safe no-op on non-BTRFS systems.
+
+# Require btrfs-progs
+command -v btrfs &>/dev/null || exit 0
+
+# Only run when /boot (or root if /boot is not a separate mount) is on BTRFS
+btrfs filesystem show /boot &>/dev/null || exit 0
+
+# Recompress all kernel and initramfs files present in /boot
+for f in /boot/vmlinuz-* /boot/initramfs-*.img; do
+    [[ -f "$f" ]] || continue
+    btrfs filesystem defragment -czlib -f "$f" 2>/dev/null
+done
