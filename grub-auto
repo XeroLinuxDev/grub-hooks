@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 
 if [ -d /sys/firmware/efi ]; then
-    # EFI system
-    /usr/bin/grub-install --target=x86_64-efi --efi-directory=/boot/efi --force --recheck
+    # EFI system - detect mount point (/boot or /boot/efi)
+    if mountpoint -q /boot/efi; then
+        EFI_DIR=/boot/efi
+    elif mountpoint -q /boot; then
+        EFI_DIR=/boot
+    else
+        echo "Error: Could not detect EFI mount point"
+        exit 1
+    fi
+    /usr/bin/grub-install --target=x86_64-efi --efi-directory="$EFI_DIR" --force --recheck
 else
     # BIOS/MBR system - detect the disk
     DISK=$(lsblk -no PKNAME $(findmnt -n -o SOURCE /))
