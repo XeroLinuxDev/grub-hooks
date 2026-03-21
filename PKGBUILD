@@ -12,7 +12,7 @@ backup=('etc/install-grub.conf')
 replaces=("grub-tools")
 
 url=https://github.com/xerolinuxDev/$pkgname
-_url="https://raw.githubusercontent.com/xerolinuxDev/$pkgname/main"
+_url="https://raw.githubusercontent.com/xerolinux/$pkgname/main"
 
 source=(
   $_url/grub-install.hook
